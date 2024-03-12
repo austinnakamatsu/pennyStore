@@ -5,8 +5,27 @@ import { decreaseStock, selectFilteredProducts} from "../redux/ProductsSlice"
 import { addToCart } from "../redux/CartSlice"
 
 const ProductImage = styled.img`
-    width: 15rem;
+    width: 100%;
 `
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+`;
+
+// Optionally, define styles for individual grid items
+const GridItem = styled.div`
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+`
+
+const StyledInput = styled.input`
+  flex-grow: 1; // Allows the input to take up the available space
+`;
 
 export default function ProductsList(){
     const products = useSelector(selectFilteredProducts)
@@ -16,9 +35,9 @@ export default function ProductsList(){
         dispatch(decreaseStock({productId: product.id, quantity}))
     }
     return(
-        <div>
+        <GridContainer>
             {products.map((product) => (
-                <div key={product.id}>
+                <GridItem key={product.id}>
                     <h3>{product.name}</h3>
                     <ProductImage src={product.photoUrl} alt={product.name} />
                     <p>In Stock: {product.inStock}</p>
@@ -28,15 +47,15 @@ export default function ProductsList(){
                         const quantity = e.target.elements.quantity.value
                         handleAddToCart(product, quantity)
                     }}>
-                        <input type="number" name="quantity" min="1" max={product.inStock} defaultValue="0" />
+                        <StyledInput type="number" name="quantity" min="1" max={product.inStock} defaultValue="0" />
                         {product.inStock > 0 ? (
                             <button type="submit">Add to Cart</button>
                         ) : (
                             <button disabled>Out of Stock</button>
                         )}
                     </form>
-                </div>
+                </GridItem>
             ))}
-        </div>
+        </GridContainer>
     )
 }
