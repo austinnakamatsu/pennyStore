@@ -4,7 +4,7 @@ import { selectCartItems } from "../redux/CartSlice"
 import { updateStock } from "../redux/ProductsSlice"
 import { removeFromCart, clearCart } from "../redux/CartSlice"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { faL, faShoppingCart} from "@fortawesome/free-solid-svg-icons"
+import { faShoppingCart} from "@fortawesome/free-solid-svg-icons"
 import styled from "@emotion/styled"
 
 const ActiveCartButton = styled.button`
@@ -20,15 +20,12 @@ const CartList = styled.div`
     position: fixed;
     right: 0;
     top: 0;
-    width: 300px;
-    height: 100vh;
+    width: 20rem;
+    height: 100%;
     background-color: #fff;
     border-left: 1px solid #ddd;
     padding: 10px;
-    overflow-y: auto;
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
-    transition: transform 0.3s ease-in-out;
 `
 
 const CloseButton = styled.button`

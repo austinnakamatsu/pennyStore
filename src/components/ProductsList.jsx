@@ -15,7 +15,6 @@ const GridContainer = styled.div`
   padding: 20px;
 `
 
-// Optionally, define styles for individual grid items
 const GridItem = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -24,14 +23,13 @@ const GridItem = styled.div`
 `
 
 const StyledInput = styled.input`
-  /* flex-grow: 1; // Allows the input to take up the available space */
   width: 50%;
   display: inline-block;
 `
 
 const FormContent = styled.div`
   display: flex;
-  align-items: center; // Align items vertically in the center
+  align-items: center;
 `
 
 const AddToCartButton = styled.button`
@@ -54,7 +52,7 @@ export default function ProductsList(){
                     <h3>{product.name}</h3>
                     <ProductImage src={product.photoUrl} alt={product.name} />
                     <p>In Stock: {product.inStock}</p>
-                    <p>${product.price}</p>
+                    <p>Price: ${product.price}</p>
                     <form onSubmit={(e) => {
                         e.preventDefault()
                         const quantity = e.target.elements.quantity.value

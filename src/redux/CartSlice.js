@@ -6,9 +6,8 @@ const cartSlice = createSlice({
     reducers:{
         addToCart(state, action) {
             const { product, quantity } = action.payload
-            state.push({product, quantity}) // may need to parse this depending on data types
+            state.push({product, quantity})
         },
-        // enter remove function here
         removeFromCart(state, action){
             const index = state.findIndex(item => item.product.id === action.payload.productId)
             if (index !== -1) {
