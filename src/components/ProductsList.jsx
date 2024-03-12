@@ -13,7 +13,7 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
-`;
+`
 
 // Optionally, define styles for individual grid items
 const GridItem = styled.div`
@@ -24,8 +24,21 @@ const GridItem = styled.div`
 `
 
 const StyledInput = styled.input`
-  flex-grow: 1; // Allows the input to take up the available space
-`;
+  /* flex-grow: 1; // Allows the input to take up the available space */
+  width: 50%;
+  display: inline-block;
+`
+
+const FormContent = styled.div`
+  display: flex;
+  align-items: center; // Align items vertically in the center
+`
+
+const AddToCartButton = styled.button`
+  width: 50%;
+  display: inline-block;
+  cursor: pointer;
+`
 
 export default function ProductsList(){
     const products = useSelector(selectFilteredProducts)
@@ -47,12 +60,14 @@ export default function ProductsList(){
                         const quantity = e.target.elements.quantity.value
                         handleAddToCart(product, quantity)
                     }}>
-                        <StyledInput type="number" name="quantity" min="1" max={product.inStock} defaultValue="0" />
-                        {product.inStock > 0 ? (
-                            <button type="submit">Add to Cart</button>
-                        ) : (
-                            <button disabled>Out of Stock</button>
-                        )}
+                        <FormContent>
+                            <StyledInput type="number" name="quantity" min="1" max={product.inStock} defaultValue="0" />
+                            {product.inStock > 0 ? (
+                                <AddToCartButton type="submit">Add to Cart</AddToCartButton>
+                            ) : (
+                                <button disabled>Out of Stock</button>
+                            )}
+                        </FormContent>
                     </form>
                 </GridItem>
             ))}
