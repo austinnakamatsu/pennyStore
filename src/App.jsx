@@ -24,7 +24,7 @@ export default function App() {
     }, [])
     return (
         <div>
-            <h1>Penny Candy Store</h1>
+            <h1 style={{textAlign: 'center'}}>Penny Candy Store</h1>
             <CartWidget />
             <ProductsList />
         </div>
