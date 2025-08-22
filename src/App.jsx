@@ -11,9 +11,7 @@ export default function App() {
     useEffect(() => {
         async function fetchProducts() {
             try {
-                const response = await fetch(
-                    `/public/products.json`
-                )
+                const response = await fetch(`${import.meta.env.BASE_URL}products.json`)
                 const responseBody = await response.json()
                 dispatch(setProducts(responseBody))
             } catch (err) {
